@@ -9,3 +9,15 @@ mysqli_real_connect($conn, "mysql-adapt-dev.mysql.database.azure.com", "symbioti
 if (mysqli_connect_errno()) {
   die("Connection failed: ".mysqli_connect_error());
 }
+
+$sql = "SELECT LastName, FirstName, Address, City FROM persons ORDER BY LastName";
+$result = $conn -> query($sql);
+
+// Associative array
+$row = $result -> fetch_assoc();
+printf ("%s (%s)\n", $row["LastName"], $row["FirstName"]);
+
+// Free result set
+$result -> free_result();
+
+$conn -> close();
