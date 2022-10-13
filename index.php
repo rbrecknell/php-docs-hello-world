@@ -14,8 +14,9 @@ $sql = "SELECT LastName, FirstName, Address, City FROM persons ORDER BY LastName
 $result = $conn -> query($sql);
 
 // Associative array
-$row = $result -> fetch_assoc();
-printf ("%s (%s)\n", $row["LastName"], $row["FirstName"]);
+while ($row = $result -> fetch_assoc()) {
+    printf ("%s (%s)\n", $row["LastName"], $row["FirstName"]);
+}
 
 // Free result set
 $result -> free_result();
